@@ -79,6 +79,7 @@ plugins=(
   nyan
   themes
   alias-tips
+  docker
   zsh-syntax-highlighting
 )
 
