@@ -76,7 +76,6 @@ plugins=(
   command-not-found
   history
   battery
-  nyan
   themes
   alias-tips
   docker
