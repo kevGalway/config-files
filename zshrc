@@ -33,13 +33,15 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-alias wp="webpack --watch --colors --progress"
+if [ -r $HOME/.rbenv/bin ] ; then
+    alias wp="webpack --watch --colors --progress"
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
 
 # Set Vim as default editor
 export VISUAL=vim
@@ -50,12 +52,19 @@ compinit
 
 if [ -z "$TMUX" ]; then 
     tmux attach -t default || tmux
-new -s default
+    new -s default
 fi
 
-export PATH=/usr/local/aws/bin:$PATH
-source /usr/local/aws/bin/aws_zsh_completer.sh
+if [ -r /home/kevin/.local/bin/aws_zsh_completer.sh ] ; then
+    export PATH=/home/kevin/.local/bin/aws_zsh_completer.sh:$PATH
+else
+    export PATH=/usr/local/aws/bin:$PATH
+fi
+
+if [ -r /usr/local/aws/bin/aws_zsh_completer.sh ] ; then
+    source /usr/local/aws/bin/aws_zsh_completer.sh
+fi
 
 #Syntax highlighting in zsh
-source $ZSH/custom/plugins/zsh-syntax-highlighting
+source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
