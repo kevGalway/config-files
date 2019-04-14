@@ -14,7 +14,6 @@ plugins=(
   rails
   ruby
   bundler
-  autojump
   web-search
   dirhistory
   gitfast
