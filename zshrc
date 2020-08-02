@@ -26,6 +26,9 @@ plugins=(
   battery
   themes
   docker
+  docker-compose
+  helm
+  aws
   zsh-syntax-highlighting
 )
 
