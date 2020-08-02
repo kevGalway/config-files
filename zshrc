@@ -25,7 +25,6 @@ plugins=(
   history
   battery
   themes
-  alias-tips
   docker
   zsh-syntax-highlighting
 )
@@ -65,10 +64,6 @@ if [ -r /usr/local/aws/bin/aws_zsh_completer.sh ] ; then
 fi
 
 export PATH=/opt/:$PATH
-
-#Syntax highlighting in zsh
-source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
