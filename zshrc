@@ -66,6 +66,10 @@ if [ -r /usr/local/aws/bin/aws_zsh_completer.sh ] ; then
     source /usr/local/aws/bin/aws_zsh_completer.sh
 fi
 
+autoload -U compinit
+compinit
+fpath=($fpath ~/.zsh/completion)
+
 export PATH=/opt/:$PATH
 
 # tabtab source for serverless package
