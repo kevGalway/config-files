@@ -44,6 +44,9 @@ if [ -r $HOME/.rbenv/bin ] ; then
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
+# Add user bin dir to path
+export PATH="$HOME/bin:$PATH"
+
 # Set Vim as default editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
@@ -53,7 +56,8 @@ compinit
 
 if [ -z "$TMUX" ]; then 
     tmux attach -t default || tmux
-    new -s default
+    tmux new -s default
+    
 fi
 
 if [ -r /home/kevin/.local/bin/aws_zsh_completer.sh ] ; then
