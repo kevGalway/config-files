@@ -1,0 +1,46 @@
+# ---------- Paths / editor ----------
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export EDITOR=vim
+export VISUAL=vim
+set -o interactivecomments
+
+# ---------- Optional: Oh My Zsh ----------
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git)
+if [ -f "$ZSH/oh-my-zsh.sh" ]; then
+  source "$ZSH/oh-my-zsh.sh"
+fi
+
+# ---------- Standalone plugins (Termux) ----------
+# (installed via git in ~/.zsh/plugins)
+[ -f "$HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
+  source "$HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -f "$HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && \
+  source "$HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# ---------- Completion ----------
+autoload -U compinit && compinit
+autoload -Uz bashcompinit && bashcompinit
+if command -v aws_zsh_completer_safe >/dev/null 2>&1; then
+  complete -C aws_zsh_completer_safe aws
+fi
+# (If you don't want AWS completion, delete the 3 lines above)
+
+# ---------- Android helpers ----------
+alias copy='termux-clipboard-set'
+alias paste='termux-clipboard-get'
+alias openurl='termux-open-url'
+
+# QoL
+alias grep='grep --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias gst='git status'
+alias cpcat="termux-clipboard-set <"
+
+# ---------- Start tmux once (interactive shells only) ----------
+if [[ -z "$TMUX" && -o interactive && -z "${TMUX_NO_AUTO:-}" ]]; then
+  tmux attach -t default 2>/dev/null || tmux new -s default
+fi
